@@ -131,6 +131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 404320906}
   - component: {fileID: 404320905}
+  - component: {fileID: 404320907}
   m_Layer: 0
   m_Name: SmileyFace
   m_TagString: Untagged
@@ -196,12 +197,24 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 404320904}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -15.0625}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &404320907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 404320904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1a0025653b77684896f13f23eb793ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &409884774
 GameObject:
   m_ObjectHideFlags: 0
