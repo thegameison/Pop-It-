@@ -8,6 +8,7 @@ public class MotionControl: MonoBehaviour
     private Gyroscope gyro;
     private Vector3 startEulerAngles;
     private Vector3 startGyroAttitudeToEuler;
+    public float adjustmentAngle;
     
     // Start is called before the first frame update
     void Start()
@@ -43,7 +44,7 @@ public class MotionControl: MonoBehaviour
             deltaEulerAngles.x = 0.0f;
             deltaEulerAngles.y = 0.0f;
             //transform.eulerAngles = new Vector3(0, 0, startEulerAngles.z - deltaEulerAngles.z);
-            transform.rotation = Quaternion.Euler(0,0,-deltaEulerAngles.z-90);
+            transform.rotation = Quaternion.Euler(0,0,-deltaEulerAngles.z-adjustmentAngle);
         }
     }
 }
