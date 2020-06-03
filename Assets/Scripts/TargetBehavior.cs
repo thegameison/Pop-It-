@@ -23,12 +23,13 @@ public class TargetBehavior : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D other) 
     {
-        print("I'm in");
+        //print("I'm in");
         isTouching = true;
         timer += Time.deltaTime;
-        print("Time is "+ timer);
+        //print("Time is "+ timer);
         if (isTouching && (timer >= contactReq)){
-            print("We switching");
+            //print("We switching");
+            GameManager.instance.points++;            
             GameManager.instance.GenerateTargetPosition();
             timer = 0;
             isTouching = false;
@@ -37,7 +38,7 @@ public class TargetBehavior : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other) 
     {
-        print("we out");
+        //print("we out");
         timer = 0;
         isTouching = false;
     }
