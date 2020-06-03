@@ -9,10 +9,12 @@ public class MotionControl: MonoBehaviour
     private Vector3 startEulerAngles;
     private Vector3 startGyroAttitudeToEuler;
     public float adjustmentAngle;
+    private BoxCollider2D pointerCollision;
     
     // Start is called before the first frame update
     void Start()
     {
+        pointerCollision = GetComponent<BoxCollider2D>();
         gyroEnabled = EnableGyro();
         startEulerAngles = transform.eulerAngles;
         startEulerAngles.x = 0.0f;

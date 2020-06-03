@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
         
     }
 
-    private void GenerateTargetPosition()
+    public void GenerateTargetPosition()
     {
         targetDot.SetActive(false);
         float angle;
