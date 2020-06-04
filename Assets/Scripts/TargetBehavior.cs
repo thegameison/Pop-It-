@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TargetBehavior : MonoBehaviour
 {
+
     private CircleCollider2D collision;
     private float timer;
     private bool isTouching;
@@ -11,6 +12,7 @@ public class TargetBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+      
         collision = GetComponent<CircleCollider2D>();
         timer = 0;
         isTouching = false;
@@ -19,6 +21,7 @@ public class TargetBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+      
         // can leave blank I think, as this is only based on collisions
     }
     private void OnTriggerStay2D(Collider2D other) 
@@ -27,13 +30,19 @@ public class TargetBehavior : MonoBehaviour
         isTouching = true;
         timer += Time.deltaTime;
         //print("Time is "+ timer);
+        
+        
+        
         if (isTouching && (timer >= contactReq)){
             //print("We switching");
             GameManager.instance.points++;            
             GameManager.instance.GenerateTargetPosition();
+         
             timer = 0;
             isTouching = false;
         }
+
+        
     }
 
     private void OnTriggerExit2D(Collider2D other) 

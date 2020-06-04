@@ -46,7 +46,7 @@ public class MotionControl: MonoBehaviour
             deltaEulerAngles.x = 0.0f;
             deltaEulerAngles.y = 0.0f;
             //transform.eulerAngles = new Vector3(0, 0, startEulerAngles.z - deltaEulerAngles.z);
-            transform.rotation = Quaternion.Euler(0,0,-deltaEulerAngles.z-adjustmentAngle);
+            transform.rotation = Quaternion.Euler(0, 0,-deltaEulerAngles.z-adjustmentAngle);
         }
     }
 }
