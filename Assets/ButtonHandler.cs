@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class ButtonHandler : MonoBehaviour
 {
     public static bool isStart = false;
-    Button b;
+    public static Button b;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,5 +24,7 @@ public class ButtonHandler : MonoBehaviour
     {
         isStart = true;
         b.gameObject.SetActive(false);
+        TimerHandler.textTimer.gameObject.SetActive(true);
+        TimerHandler.upStart();
     }
 }
