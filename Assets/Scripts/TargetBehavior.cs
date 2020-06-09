@@ -10,12 +10,14 @@ public class TargetBehavior : MonoBehaviour
     private bool isTouching;
     public float contactReq;
     // Start is called before the first frame update
+    private AudioSource source;
     void Start()
     {
       
         collision = GetComponent<CircleCollider2D>();
         timer = 0;
         isTouching = false;
+        source = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -35,7 +37,8 @@ public class TargetBehavior : MonoBehaviour
         
         if (isTouching && (timer >= contactReq)){
             //print("We switching");
-            GameManager.instance.points++;            
+            GameManager.instance.points++;       
+            source.Play();     
             GameManager.instance.GenerateTargetPosition();
          
             timer = 0;
