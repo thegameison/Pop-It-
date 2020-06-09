@@ -13,13 +13,13 @@ public class GameManager : MonoBehaviour
     public GameObject targetDot;
     public int points;
     private Text scoreText;
-    public HashSet<int> curUsed = new HashSet<int>();
+    //public HashSet<int> curUsed = new HashSet<int>();
     
 
     // Start is called before the first frame update
     void Start()
     {
-        animator = GetComponent<Animator>();
+        //animator = GetComponent<Animator>();
         curTargetDegree = 0;
         points = 0;
         if (instance == null){
@@ -34,11 +34,11 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (points % 10 == 0 && !curUsed.Contains(points/10))
+        /*if (points % 10 == 0 && !curUsed.Contains(points/10))
         {
             curUsed.Add(points / 10);
             animator.SetTrigger("NewLevel");
-        }
+        }*/
     }
 
     public void GenerateTargetPosition()

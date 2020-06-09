@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TargetBehavior : MonoBehaviour
 {
@@ -37,7 +38,11 @@ public class TargetBehavior : MonoBehaviour
         
         if (isTouching && (timer >= contactReq)){
             //print("We switching");
-            GameManager.instance.points++;       
+            if (ButtonHandler.isStart == true)
+            {
+                    GameManager.instance.points++;   
+            }
+                
             source.Play();     
             GameManager.instance.GenerateTargetPosition();
          
