@@ -2,16 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class TargetBehavior : MonoBehaviour
 {
 
     private CircleCollider2D collision;
     private float timer;
+    private float timer2 = 0;
     private bool isTouching;
     public float contactReq;
     // Start is called before the first frame update
     private AudioSource source;
+    private Text bonus;
     void Start()
     {
       
@@ -19,13 +22,25 @@ public class TargetBehavior : MonoBehaviour
         timer = 0;
         isTouching = false;
         source = GetComponent<AudioSource>();
+        bonus = GameObject.Find("Bonus").GetComponent<Text>();
+        bonus.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-      
-        // can leave blank I think, as this is only based on collisions
+        if (bonus.gameObject.activeSelf)
+        {
+            if (timer2 >= 1)
+            {
+                bonus.gameObject.GetComponent<AudioSource>().Stop();
+                bonus.gameObject.SetActive(false);
+                timer2 = 0;
+            } else 
+            {
+                timer2 += Time.deltaTime;
+            }
+        }
     }
     private void OnTriggerStay2D(Collider2D other) 
     {
@@ -40,10 +55,12 @@ public class TargetBehavior : MonoBehaviour
             //print("We switching");
             if (ButtonHandler.isStart == true)
             {
-                    GameManager.instance.points++;   
+                GameManager.instance.points++;
             }
                 
-            source.Play();     
+            source.Play();
+            TimerHandler.timeRemaining += contactReq;
+            CalculateTimeBonus();
             GameManager.instance.GenerateTargetPosition();
          
             timer = 0;
@@ -58,5 +75,16 @@ public class TargetBehavior : MonoBehaviour
         //print("we out");
         timer = 0;
         isTouching = false;
+    }
+
+    private void CalculateTimeBonus()
+    {
+        float rng = Random.value;
+        if((2/(float) GameManager.instance.points) > rng)
+        {
+            TimerHandler.timeRemaining++;
+            bonus.gameObject.SetActive(true);
+            bonus.gameObject.GetComponent<AudioSource>().Play();
+        }
     }
 }

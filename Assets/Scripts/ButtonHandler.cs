@@ -23,8 +23,10 @@ public class ButtonHandler : MonoBehaviour
     void ButtonClicked()
     {
         isStart = true;
+        HighScoreHandler.DisableGameOver();
         b.gameObject.SetActive(false);
-        TimerHandler.textTimer.gameObject.SetActive(true);
         TimerHandler.upStart();
+        GameManager.instance.SetScoreActiveToggle();
+        TimerHandler.textTimer.gameObject.SetActive(true);
     }
 }

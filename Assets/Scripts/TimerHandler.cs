@@ -39,6 +39,7 @@ public class TimerHandler : MonoBehaviour
             ButtonHandler.isStart = false;
             ButtonHandler.b.gameObject.SetActive(true);
             textTimer.gameObject.SetActive(false);
+            GameManager.instance.SetScoreActiveToggle();
             GameManager.instance.points = 0;
             
         }

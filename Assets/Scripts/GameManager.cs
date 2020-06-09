@@ -11,8 +11,9 @@ public class GameManager : MonoBehaviour
     public static GameManager instance = null; // need singleton for access from other classes
     public float curTargetDegree;
     public GameObject targetDot;
+    private bool isScoreActive;
     public int points;
-    private Text scoreText;
+    public static Text scoreText;
     //public HashSet<int> curUsed = new HashSet<int>();
     
 
@@ -28,6 +29,8 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
         scoreText = GameObject.Find("Score").GetComponent<Text>();
+        isScoreActive = true;
+        SetScoreActiveToggle();
         GenerateTargetPosition();
     }
 
@@ -43,7 +46,7 @@ public class GameManager : MonoBehaviour
 
     public void GenerateTargetPosition()
     {
-        scoreText.text = "Score: " + points;
+        scoreText.text = "" + points;
         targetDot.SetActive(false);
         float angle;
         angle = 180*Random.value;
@@ -57,6 +60,16 @@ public class GameManager : MonoBehaviour
         targetDot.transform.rotation = Quaternion.Euler(0,0,angle);
         curTargetDegree = angle;
         targetDot.SetActive(true);
+    }
+    public void SetScoreActiveToggle(){
+        scoreText.text = "" + 0;
+        if (!isScoreActive){
+            scoreText.gameObject.SetActive(true);
+            isScoreActive = true;
+        } else {
+            scoreText.gameObject.SetActive(false);
+            isScoreActive = false;
+        }
     }
     /* private float GenerateTargetAngle()
     {
