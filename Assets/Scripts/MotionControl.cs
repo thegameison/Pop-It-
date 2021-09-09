@@ -26,6 +26,7 @@ public class MotionControl: MonoBehaviour
         startGyroAttitudeToEuler.z = 0.0f;
     }
 
+    // enables gyroscopic movement for motion controls
     private bool EnableGyro()
     {
         if(SystemInfo.supportsGyroscope)
@@ -36,16 +37,21 @@ public class MotionControl: MonoBehaviour
         }
         return false;
     }
+
     // Update is called once per frame
     void Update()
     {
         
         if(gyroEnabled)
         {
+            // track change in euler angles
             Vector3 deltaEulerAngles = gyro.attitude.eulerAngles - startGyroAttitudeToEuler;
+            
+            // gyroscope can track angular change in all 3-axes, but we only want in the z direction
             deltaEulerAngles.x = 0.0f;
             deltaEulerAngles.y = 0.0f;
-            //transform.eulerAngles = new Vector3(0, 0, startEulerAngles.z - deltaEulerAngles.z);
+            
+            // changes the object's rotation
             transform.rotation = Quaternion.Euler(0, 0,-deltaEulerAngles.z-adjustmentAngle);
         }
     }

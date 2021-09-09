@@ -18,10 +18,12 @@ public class TargetBehavior : MonoBehaviour
     void Start()
     {
       
+        // 
         collision = GetComponent<CircleCollider2D>();
         timer = 0;
         isTouching = false;
         source = GetComponent<AudioSource>();
+        // bonus points target
         bonus = GameObject.Find("Bonus").GetComponent<Text>();
         bonus.gameObject.SetActive(false);
     }
@@ -44,23 +46,27 @@ public class TargetBehavior : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D other) 
     {
-        //print("I'm in");
+        // means the cursor is touching the trigger
         isTouching = true;
         timer += Time.deltaTime;
-        //print("Time is "+ timer);
         
         
-        
+        // makes sure cursor stays on the target for at least a certain amount of time
         if (isTouching && (timer >= contactReq)){
-            //print("We switching");
+
+            // only increases score if the game has started
             if (ButtonHandler.isStart == true)
             {
                 GameManager.instance.points++;
             }
-                
+            // plays a sound    
             source.Play();
+            
+            // makes sure that if the update function is too slow, then player is not penalized
             TimerHandler.timeRemaining += contactReq;
             CalculateTimeBonus();
+
+            // select a new position for the target
             GameManager.instance.GenerateTargetPosition();
          
             timer = 0;
@@ -72,11 +78,12 @@ public class TargetBehavior : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other) 
     {
-        //print("we out");
+
         timer = 0;
         isTouching = false;
     }
 
+    // player has a random chance for extra time (chances decrease as they accumulate more points)
     private void CalculateTimeBonus()
     {
         float rng = Random.value;

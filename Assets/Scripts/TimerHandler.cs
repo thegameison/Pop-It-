@@ -20,8 +20,12 @@ public class TimerHandler : MonoBehaviour
     {
         if(timeRemaining > 0)
         {
+            // keeps track of time remaining in this game
             timeRemaining -= Time.deltaTime;
+            
             int curTimeLeft = (int)Math.Round(timeRemaining, 0);
+            
+            // different ways to display the time
             if (curTimeLeft >= 10)
             {
                 textTimer.text = "0:"+curTimeLeft.ToString();
@@ -34,7 +38,9 @@ public class TimerHandler : MonoBehaviour
         }
         else
         {
+            // update high score using a static function
             HighScoreHandler.updateScore(GameManager.instance.points);
+            // reset time and states of UI elements
             timeRemaining = 30;
             ButtonHandler.isStart = false;
             ButtonHandler.b.gameObject.SetActive(true);

@@ -14,7 +14,6 @@ public class GameManager : MonoBehaviour
     private bool isScoreActive;
     public int points;
     public static Text scoreText;
-    //public HashSet<int> curUsed = new HashSet<int>();
     
 
     // Start is called before the first frame update
@@ -37,6 +36,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // potentially could include a levelUp feature
         /*if (points % 10 == 0 && !curUsed.Contains(points/10))
         {
             curUsed.Add(points / 10);
@@ -44,23 +44,33 @@ public class GameManager : MonoBehaviour
         }*/
     }
 
+    // generates a new position for the target after a successful hit
     public void GenerateTargetPosition()
     {
+        // update the point count in the UI
         scoreText.text = "" + points;
+
         targetDot.SetActive(false);
         float angle;
+        
+        // give some randomness to how new positions are selected
         angle = 180*Random.value;
         if (Random.value < 0.5){
             angle *= -1;
         }
+        // this is to ensure that the target's new position is not next to its previous position
         if (Math.Abs(angle - curTargetDegree) < 30)
         {
             angle -= 60;
         }
+        
+
         targetDot.transform.rotation = Quaternion.Euler(0,0,angle);
         curTargetDegree = angle;
         targetDot.SetActive(true);
     }
+
+    // toggles the score display if game has not started yet
     public void SetScoreActiveToggle(){
         scoreText.text = "" + 0;
         if (!isScoreActive){

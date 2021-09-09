@@ -7,6 +7,7 @@ public class ButtonHandler : MonoBehaviour
 {
     public static bool isStart = false;
     public static Button b;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +21,7 @@ public class ButtonHandler : MonoBehaviour
         
     }
 
+    // click the button to start the game
     void ButtonClicked()
     {
         isStart = true;

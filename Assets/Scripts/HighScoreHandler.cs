@@ -9,6 +9,7 @@ public class HighScoreHandler : MonoBehaviour
     public static Text gameOver;
     public static Text finalScore;
     public static int highScore;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +28,7 @@ public class HighScoreHandler : MonoBehaviour
         
     }
 
+    // update the high score at the end of the each game
     public static void updateScore(int newScore)
     {
         gameOver.gameObject.SetActive(true);
@@ -40,6 +42,8 @@ public class HighScoreHandler : MonoBehaviour
             highScoreText.text = "High Score: " + newScore.ToString();
         }
     }
+
+    // when a new game starts, disable the gameover text
     public static void DisableGameOver()
     {
         gameOver.gameObject.SetActive(false);
